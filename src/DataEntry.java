@@ -1,85 +1,85 @@
 public class DataEntry {
 	// The backup class for a pseudo-database
-	private static String PRODUCT_ID;
-	private static Integer QUANTITY;
-	private static double WHOLESALE_COST;
-	private static float SALE_PRICE;
-	private static String SUPPLIER_ID;
+	private String productId;
+	private Integer quantity;
+	private double wholesaleCost;
+	private float salePrice;
+	private final String supplierId;
 	
 	public DataEntry(
-	 String PRODUCT_ID,
-	 Integer QUANTITY,
-	 double WHOLESALE_COST,
-	 float SALE_PRICE,
-	 String SUPPLIER_ID
+	 String productId,
+	 Integer quantity,
+	 double wholesaleCost,
+	 float salePrice,
+	 String supplierId
 	) {
-		DataEntry.PRODUCT_ID = PRODUCT_ID;
-		DataEntry.QUANTITY = QUANTITY;
-		DataEntry.WHOLESALE_COST = WHOLESALE_COST;
-		DataEntry.SALE_PRICE = SALE_PRICE;
-		DataEntry.SUPPLIER_ID = SUPPLIER_ID;
+		this.productId = productId;
+		this.quantity = quantity;
+		this.wholesaleCost = wholesaleCost;
+		this.salePrice = salePrice;
+		this.supplierId = supplierId;
 	}
 	
 	@Override public String toString() {
-		return "" + PRODUCT_ID
-		 + QUANTITY
-		 + WHOLESALE_COST
-		 + SALE_PRICE
-		 + SUPPLIER_ID + "\n";
+		return "" + productId
+		 + quantity
+		 + wholesaleCost
+		 + salePrice
+		 + supplierId + "\n";
 	}
 	
-	public static long getQuantity() {
-		return QUANTITY;
+	public Integer getQuantity() {
+		return quantity;
 	}
 	
-	public static void setQUANTITY(Integer QUANTITY) {
-		DataEntry.QUANTITY = QUANTITY;
+	public  void setQUANTITY(Integer quantity) {
+		this.quantity = quantity;
 	}
 	
-	public static double getWholesaleCost() {
-		return WHOLESALE_COST;
+	public double getWholesaleCost() {
+		return wholesaleCost;
 	}
 	
-	public static void setWholesaleCost(double wholesaleCost) {
-		WHOLESALE_COST = wholesaleCost;
+	public void setWholesaleCost(double wholesaleCost) {
+		this.wholesaleCost = wholesaleCost;
 	}
 	
-	public static float getSalePrice() {
-		return SALE_PRICE;
+	public float getSalePrice() {
+		return salePrice;
 	}
 	
-	public static void setSalePrice(float salePrice) {
-		SALE_PRICE = salePrice;
+	public void setSalePrice(float salePrice) {
+		this.salePrice = salePrice;
 	}
 	
-	public static String getSupplierId() {
-		return SUPPLIER_ID;
+	public String getSupplierId() {
+		return supplierId;
 	}
 	
-	public static void setSupplierId(String supplierId) {
-		SUPPLIER_ID = supplierId;
+	public void setSupplierId(String supplierId) {
+		supplierId = supplierId;
 	}
 	
-	public static String getProductId() {
-		return PRODUCT_ID;
+	public String getProductId() {
+		return productId;
 	}
 	
-	public static void setProductId(String productId) {
-		PRODUCT_ID = productId;
+	public void setProductId(String productId) {
+		this.productId = productId;
 	}
 	
 	@Override public int hashCode() {
-		return PRODUCT_ID.hashCode();
+		return productId.hashCode();
 	}
 	
 	@Override public boolean equals(Object obj) {
 		if(obj instanceof DataEntry) {
 			DataEntry de = (DataEntry)obj;
-			return getProductId().equals(PRODUCT_ID)
-			 && getSalePrice() == SALE_PRICE
-			 && getQuantity() == QUANTITY
-			 && getWholesaleCost() == WHOLESALE_COST
-			 && getSupplierId().equals(SUPPLIER_ID);
+			return this.getProductId().equals(de.getProductId())
+			 && this.getSalePrice() == de.getSalePrice()
+			 && this.getQuantity() == de.getQuantity()
+			 && this.getWholesaleCost() == de.getWholesaleCost()
+			 && this.getSupplierId().equals(de.getSupplierId());
 		}
 		return false;
 	}
