@@ -1,5 +1,14 @@
+// The backup class for a pseudo-database
 public class DataEntry {
-	// The backup class for a pseudo-database
+	public static final int SUPPLIER_ID_LENGTH = 8;
+	public static final String BAD_SUPPLIER_ID_LENGTH =
+	 "Supplier ID is not " + SUPPLIER_ID_LENGTH + " characters long";
+	public static final String BAD_QUANTITY_STRING = "The input quantity is less than zero\n";
+	public static final String BAD_WHOLESALE_COST = "The given wholesale cost is less than zero\n";
+	public static final String BAD_SALE_PRICE = "The given sale price is less than zero\n";
+	public static final int PRODUCT_ID_LENGTH = 12;
+	public static final String BAD_PRODUCT_ID_LENGTH =
+	 "Product ID is not " + PRODUCT_ID_LENGTH + " characters long";
 	private String productId;
 	private Integer quantity;
 	private double wholesaleCost;
@@ -12,7 +21,30 @@ public class DataEntry {
 	 double wholesaleCost,
 	 float salePrice,
 	 String supplierId
-	) {
+	) throws IllegalArgumentException {
+		if(productId.length() != 12
+		 || quantity < 0
+		 || wholesaleCost < 0
+		 || salePrice < 0
+		 || supplierId.length() != 8) {
+			throw new IllegalArgumentException() {
+				@Override public String getMessage() {
+					String str = "";
+					str += productId.length() != PRODUCT_ID_LENGTH?
+					 BAD_PRODUCT_ID_LENGTH:"";
+					
+					str += supplierId.length() != SUPPLIER_ID_LENGTH
+					 ?BAD_SUPPLIER_ID_LENGTH:"";
+					
+					str += quantity < 0?BAD_QUANTITY_STRING:"";
+					
+					str += wholesaleCost < 0?BAD_WHOLESALE_COST:"";
+					
+					str += salePrice < 0?BAD_SALE_PRICE:"";
+					return str;
+				}
+			};
+		}
 		this.productId = productId;
 		this.quantity = quantity;
 		this.wholesaleCost = wholesaleCost;
@@ -32,7 +64,7 @@ public class DataEntry {
 		return quantity;
 	}
 	
-	public  void setQUANTITY(Integer quantity) {
+	public void setquantity(Integer quantity) {
 		this.quantity = quantity;
 	}
 	
