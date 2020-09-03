@@ -3,6 +3,9 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.*;
 
+/**
+ * @param <T>
+ */
 public class Database<T> implements Iterable<T> {
 	private HashMap<String, DataEntry> data;
 	
@@ -10,6 +13,9 @@ public class Database<T> implements Iterable<T> {
 		data = new HashMap<>(size);
 	}
 	
+	/**
+	 * @param
+	 */
 	public boolean create(String PRODUCT_ID, DataEntry entry) {
 		if(data.containsKey(entry.getProductId())) {
 			return false;
@@ -18,6 +24,9 @@ public class Database<T> implements Iterable<T> {
 		return true;
 	}
 	
+	/**
+	 * @param
+	 */
 	public File update(String outputPath) throws FileNotFoundException {
 		File outputFile = new File(outputPath);
 		PrintWriter writer = new PrintWriter(outputFile);
@@ -27,7 +36,7 @@ public class Database<T> implements Iterable<T> {
 		return outputFile;
 	}
 	
-	public boolean remove(DataEntry entry) {
+	public boolean delete(DataEntry entry) {
 		if(data.containsKey(entry.getProductId())) {
 			return false;
 		}
@@ -35,6 +44,9 @@ public class Database<T> implements Iterable<T> {
 		return true;
 	}
 	
+	/**
+	 * @param
+	 */
 	public DataEntry read(String id) {
 		return data.get(id);
 	}
@@ -43,6 +55,9 @@ public class Database<T> implements Iterable<T> {
 		return data.toString();
 	}
 	
+	/**
+	 * @param
+	 */
 	@Override public Iterator<T> iterator() {
 		return new Iterator<T>() {
 			Map.Entry<String, DataEntry> current;
@@ -52,6 +67,10 @@ public class Database<T> implements Iterable<T> {
 				return iterator != null;
 			}
 			
+			/**
+			 *
+			 * @param
+			 */
 			@Override public T next() {
 				Map.Entry<String, DataEntry> temp = iterator.next();
 				current = iterator.next();
